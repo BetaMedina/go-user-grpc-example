@@ -1,0 +1,22 @@
+version: '2'
+services:
+  mysql:
+    container_name: go_mysql
+    restart: always
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root' 
+      MYSQL_USER: 'admin'
+      MYSQL_PASS: 'admin'
+    volumes:
+      - tmp-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - go
+
+networks:
+  go:
+    driver: bridge
+volumes:
+  tmp-volume:

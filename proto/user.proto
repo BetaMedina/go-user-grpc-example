@@ -1,0 +1,33 @@
+syntax = "proto3";
+package user;
+
+option go_package = "./pkg/user";
+
+message CreateUserInput{
+  string name = 1;
+  string email = 2;
+  string document = 3;
+  int32 age = 4;
+}
+
+message ReadUserInput{
+  int64 id = 1;
+}
+
+message CreateUserOutput{
+  int64 idUser = 1;
+  string message = 2;
+}
+
+message ReadUserOutput{
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  string document = 4;
+  int32 age = 5;
+}
+
+service UserService{
+  rpc SaveUser(CreateUserInput) returns (CreateUserOutput){};
+  rpc ReadUser(ReadUserInput) returns (ReadUserOutput){};
+}
